@@ -11,6 +11,9 @@ router.get('/:noteId',NotesController.getNote);  //this noteId is an id of a not
 
 router.post('/',NotesController.createNotes);
 
-router.patch('/:noteId',NotesController.updateNote); //patch requuest is used to update the data
+router.patch('/:noteId',NotesController.updateNote);  //patch requuest is used to update the data
+
+router.delete('/:noteId',NotesController.deleteNote);
+
 
 export default router; //we are exporting the router object which contains the getNotes function

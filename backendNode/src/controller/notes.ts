@@ -91,4 +91,25 @@ interface createNodeBody{
             next(error);
          }
     };
+
+
+export const deleteNote:RequestHandler=async(req,res,next)=>{
+    const noteId=req.params.noteId;
+    try {
+        if(!mongoose.isValidObjectId(noteId)){
+            throw(createHttpError(400,"Invalid note id"));
+        }
+        const note=await NoteModel.findById(noteId).exec();  
+        if(!note) {
+            throw(createHttpError(404,"Note not found"));
+        }
+
+        await NoteModel.findByIdAndDelete(noteId);
+        res.sendStatus(204);
+         
+      }
+     catch(error){
+        next(error);
+      }   
+};
  
